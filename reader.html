@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Terminal Reader</title>
+  <link rel="stylesheet" href="reader.css">
+  <script type="module" src="reader.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#article">Skip to article</a>
+  <header class="toolbar">
+    <span class="brand">Terminal Reader</span>
+    <span id="progress" hidden></span>
+    <nav aria-label="Reader controls">
+      <button id="appearance-toggle" aria-expanded="false" aria-controls="appearance">Appearance</button>
+      <button id="contents-toggle" title="Contents (t)" hidden>Contents</button>
+      <button id="find-toggle" title="Find in article (/)">Find /</button>
+      <button id="help-toggle" title="Keyboard shortcuts (?)">Keys ?</button>
+      <a id="source" hidden target="_blank" rel="noopener noreferrer">Original ↗</a>
+      <button id="close" title="Close reader (x)">Close</button>
+    </nav>
+    <form id="appearance" hidden>
+      <label>Text size <input id="size" type="range" min="14" max="32" step="1"><output id="size-value"></output></label>
+      <label>Column width <input id="width" type="range" min="45" max="100" step="5"><output id="width-value"></output></label>
+      <label>Line spacing <select id="spacing"><option value="1.4">Compact</option><option value="1.7">Normal</option><option value="2">Wide</option></select></label>
+      <label>Font <select id="font"><option value="mono">Monospace</option><option value="sans">Sans serif</option><option value="serif">Serif</option></select></label>
+      <label>Text color <input id="foreground" type="color" value="#00ff00"></label>
+      <label>Background <input id="background" type="color" value="#000000"></label>
+      <button id="reset" type="button">Reset to terminal</button>
+      <p id="appearance-status" role="status"></p>
+    </form>
+  </header>
+  <main id="main">
+    <p id="metadata"></p>
+    <h1 id="title">Opening article…</h1>
+    <article id="article" tabindex="-1" aria-label="Article content"></article>
+    <p id="message" role="status"></p>
+  </main>
+  <form id="search" role="search" hidden>
+    <label for="query">Find</label>
+    <input id="query" type="search" autocomplete="off" placeholder="Search article…">
+    <output id="match-count" aria-live="polite"></output>
+    <button id="previous" type="button" title="Previous match (N)">Previous</button>
+    <button id="next" type="button" title="Next match (n)">Next</button>
+    <button id="search-close" type="button" aria-label="Close search">Esc</button>
+  </form>
+  <dialog id="help" aria-labelledby="help-title">
+    <h2 id="help-title">Keyboard shortcuts</h2>
+    <p>Vimium-style navigation inside this reading view.</p>
+    <dl>
+      <dt>j / k</dt><dd>Scroll down / up</dd>
+      <dt>h / l</dt><dd>Scroll left / right</dd>
+      <dt>d / u</dt><dd>Half page down / up</dd>
+      <dt>Space / Shift+Space</dt><dd>Page down / up</dd>
+      <dt>gg / G</dt><dd>Top / bottom</dd>
+      <dt>f / F</dt><dd>Follow a visible link / open in a new tab</dd>
+      <dt>] / [</dt><dd>Next / previous heading</dd>
+      <dt>t</dt><dd>Show the contents</dd>
+      <dt>/</dt><dd>Find text; Enter keeps matches and returns to reading</dd>
+      <dt>n / N</dt><dd>Next / previous match</dd>
+      <dt>+ / −</dt><dd>Increase / decrease text size</dd>
+      <dt>o</dt><dd>Open the original article</dd>
+      <dt>x</dt><dd>Close the reading tab</dd>
+      <dt>?</dt><dd>Show shortcuts</dd>
+      <dt>Esc</dt><dd>Cancel link hints, clear search, or close a panel</dd>
+    </dl>
+    <p>Browser shortcuts and normal typing in fields remain available.</p>
+    <button id="help-close" autofocus>Close shortcuts</button>
+  </dialog>
+  <dialog id="contents" aria-labelledby="contents-title">
+    <h2 id="contents-title">Contents</h2>
+    <nav aria-label="Article sections"><ol id="contents-list"></ol></nav>
+    <button id="contents-close">Close contents</button>
+  </dialog>
+  <div id="hints" aria-hidden="true"></div>
+  <div id="hint-status" role="status" class="hint-status" hidden></div>
+</body>
+</html>

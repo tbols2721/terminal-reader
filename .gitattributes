@@ -1,0 +1,2 @@
+# Preserve vendored Readability formatting.
+vendor/** -whitespace

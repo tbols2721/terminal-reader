@@ -1,0 +1,15 @@
+node_modules/
+test-results/
+playwright-report/
+*.zip
+
+# Private diagnostics and credentials
+*.log
+.env
+.env.*
+*.pem
+*.key
+*.bundle
+*.pcap
+*.pcapng
+local/

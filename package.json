@@ -1,0 +1,14 @@
+{
+  "name": "terminal-reader",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/reader.test.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.58.2"
+  },
+  "license": "MIT",
+  "description": "A terminal-style Chrome reader with keyboard navigation and local article extraction"
+}
